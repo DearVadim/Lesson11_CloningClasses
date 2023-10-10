@@ -8,39 +8,43 @@ public class Main {
         System.out.printf("Передали данные: модель: %s,\t номер: %s,\t вес: %d г.\n", Apple.getModel(), Apple.getNumber(), Apple.getWeight());
         System.out.println(Apple.Info() + "\n");
 
-        Phone Samsung = null;
-        try {
-            Samsung = Apple.clone();
+
+        Phone[] PhonesArray;
+        PhonesArray = new Phone[2];
+
+         try {
+            PhonesArray[0] = Apple.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-        Samsung.setModel("Samsung Galaxy S20");
-        Samsung.setNumber("+79999999999");
-        Samsung.setWeight((short) 190);
-        System.out.printf("Передали данные в клон: модель %s,\t номер %s,\t вес %d г.\n", Samsung.getModel(), Samsung.getNumber(), Samsung.getWeight());
-        System.out.println(Samsung.Info() + "\n");
+        PhonesArray[0].setModel("Samsung Galaxy S20");
+        PhonesArray[0].setNumber("+79999999999");
+        PhonesArray[0].setWeight((short) 190);
+        System.out.printf("Передали данные в клон: модель %s,\t номер %s,\t вес %d г.\n", PhonesArray[0].getModel(), PhonesArray[0].getNumber(), PhonesArray[0].getWeight());
+        System.out.println(PhonesArray[0].Info() + "\n");
 
-        Phone Xiaomi = null;
         try {
-            Xiaomi = Apple.clone();
+            PhonesArray[1] = Apple.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
         //Phone Xiaomi = new XiaomiPhone();
-        Xiaomi.setModel("Xiaomi Redmi 10A");
-        Xiaomi.setNumber("+79999999988");
-        Xiaomi.setWeight((short) 194);
-        System.out.printf("Передали данные в клон: модель: %s,\t номер: %s,\t вес: %d г.\n", Xiaomi.getModel(), Xiaomi.getNumber(), Xiaomi.getWeight());
-        System.out.println(Xiaomi.Info() + "\n");
+        PhonesArray[1].setModel("Xiaomi Redmi 10A");
+        PhonesArray[1].setNumber("+79999999988");
+        PhonesArray[1].setWeight((short) 194);
+        System.out.printf("Передали данные в клон: модель: %s,\t номер: %s,\t вес: %d г.\n", PhonesArray[1].getModel(), PhonesArray[1].getNumber(), PhonesArray[1].getWeight());
+        System.out.println(PhonesArray[1].Info() + "\n");
 
 
-        Xiaomi.info(Xiaomi.getPhoneID(), Xiaomi.getModel(), Xiaomi.getWeight(), Xiaomi.getNumber());
-        Samsung.info(Samsung.getPhoneID(), Samsung.getModel(), Samsung.getWeight(), Samsung.getNumber());
         Apple.info(Apple.getPhoneID(), Apple.getModel(), Apple.getWeight(), Apple.getNumber());
+        for (Phone PhoneElement:PhonesArray) {
+            PhoneElement.info(PhoneElement.getPhoneID(), PhoneElement.getModel(), PhoneElement.getWeight(), PhoneElement.getNumber());
 
-        Xiaomi.receiveCall("Иван Петрович");
-        Xiaomi.receiveCall("Семен Павлов");
-        Samsung.receiveCall("Дарья Синицына");
+        }
+
         Apple.receiveCall("тетя Даша");
+        PhonesArray[0].receiveCall("Дарья Синицына");
+        PhonesArray[1].receiveCall("Иван Петрович");
+        PhonesArray[1].receiveCall("Семен Павлов");
     }
 }
